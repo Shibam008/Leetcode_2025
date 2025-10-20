@@ -43,15 +43,15 @@ public:
         }
 
         // step 3
-        int first = 0, second = 0;
-        while(second < sortedVowels.size()) 
+        int i = 0, j = 0;
+        while(j < sortedVowels.size()) 
         {
-            if(s[first] == '#') 
+            if(s[i] == '#') 
             {
-                s[first] = sortedVowels[second];
-                second++;
+                s[i] = sortedVowels[j];
+                j++;
             }
-            first++;
+            i++;
         }
         return s;
     }
