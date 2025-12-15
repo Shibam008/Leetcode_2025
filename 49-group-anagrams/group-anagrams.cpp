@@ -24,7 +24,8 @@ public:
                 group.push_back(v[i].second);
                 i++;
             }
-            i--;
+
+            i--; // adjust index
             ans.push_back(group);
         }
         return ans;
