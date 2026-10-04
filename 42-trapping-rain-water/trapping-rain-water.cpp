@@ -2,42 +2,28 @@ class Solution {
 public:
     int trap(vector<int>& height) {
 
-        // first have to findout the largest tower.
-        int maxHeightIdx = 0;
-        for(int i=0; i<height.size(); i++) {
-            if(height[i] > height[maxHeightIdx]) {
-                maxHeightIdx = i;
-            }
-        }
-
-        // solving left part - 
-        int leftMax = 0;
         int water = 0;
+        int left = 0;
+        int right = height.size() - 1;
 
-        for (int i=0; i<maxHeightIdx; i++) 
+        int leftMax = height[left];
+        int rightMax = height[right];
+
+        while( left < right ) 
         {
-            if (leftMax > height[i])
+            if (leftMax < rightMax)
             {
-                water += leftMax - height[i];
+                left++;
+                leftMax = max(leftMax, height[left]);
+                water += leftMax - height[left];
             }
             else {
-                leftMax = height[i];
+                right--;
+                rightMax = max(rightMax, height[right]);
+                water += rightMax - height[right];
             }
         }
 
-        int rightMax = 0;
-
-        for (int i=height.size()-1; i > maxHeightIdx; i--) 
-        {
-            if (rightMax > height[i])
-            {
-                water += rightMax - height[i];
-            }
-            else {
-                rightMax = height[i];
-            }
-        }
         return water;
-        
     }
 };
